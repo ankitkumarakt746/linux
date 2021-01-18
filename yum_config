@@ -1,0 +1,17 @@
+mkdir /dvd
+mount /dev/cdrom /dvd
+echo "mount /dev/cdrom /dvd" >> /etc/rc.d/rc.local
+chmod +x /etc/rc.d/rc.local
+
+echo "[appstream]" >> /etc/yum.repos.d/dvd.repo
+echo "name=appstream" >> /etc/yum.repos.d/dvd.repo
+echo "baseurl=file:///dvd/AppStream/" >> /etc/yum.repos.d/dvd.repo
+echo "gpgcheck=0" >> /etc/yum.repos.d/dvd.repo
+
+echo "[baseos]" >> /etc/yum.repos.d/dvd.repo
+echo "name=baseos" >> /etc/yum.repos.d/dvd.repo
+echo "baseurl=file:///dvd/BaseOS/" >> /etc/yum.repos.d/dvd.repo
+echo "gpgcheck=0" >> /etc/yum.repos.d/dvd.repo
+
+dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
